@@ -995,7 +995,7 @@ function setupGlideScroll() {
     }
 
     function glide() {
-        currentY += (targetY - currentY) * 0.105;
+        currentY += (targetY - currentY) * 0.078;
 
         if (Math.abs(targetY - currentY) < 0.35) {
             currentY = targetY;
@@ -1022,7 +1022,7 @@ function setupGlideScroll() {
 
         event.preventDefault();
         const unit = event.deltaMode === 1 ? 18 : event.deltaMode === 2 ? window.innerHeight : 1;
-        targetY = clamp(targetY + event.deltaY * unit * 0.92);
+        targetY = clamp(targetY + event.deltaY * unit * 1.08);
         startGlide();
     }, { passive: false });
 
