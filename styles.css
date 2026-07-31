@@ -1436,53 +1436,9 @@ body {
     overflow-x: hidden;
 }
 
-.page-transition {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.transition-layer {
-    position: absolute;
-    inset: -15%;
-    transform: translateX(120%) skewX(-10deg);
-    transition: transform 0.65s cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-.transition-back {
-    background: #1d0b07;
-    transition-delay: 0s;
-}
-
-.transition-middle {
-    background: #713d28;
-    transition-delay: 0.06s;
-}
-
-.transition-front {
-    display: grid;
-    place-items: center;
-    background: #32150e;
-    transition-delay: 0.12s;
-}
-
 .page-transition.is-entering .transition-layer,
 .page-transition.is-leaving .transition-layer {
     transform: translateX(0) skewX(-10deg);
-}
-
-.transition-logo {
-    color: #fff3df;
-    font-size: clamp(2rem, 6vw, 5rem);
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    opacity: 0;
-    transform: skewX(10deg) scale(0.7) rotate(-8deg);
-    transition:
-        opacity 0.3s ease 0.2s,
-        transform 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) 0.2s;
 }
 
 .page-transition.is-entering .transition-logo,
@@ -1496,5 +1452,76 @@ body {
     .transition-logo {
         transition-duration: 0.01ms;
         transition-delay: 0s;
+    }
+}
+@view-transition {
+    navigation: auto;
+}
+
+.site-header {
+    view-transition-name: site-header;
+}
+
+main {
+    view-transition-name: page-content;
+}
+
+.site-footer {
+    view-transition-name: site-footer;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+}
+
+::view-transition-group(site-header),
+::view-transition-group(site-footer) {
+    animation-duration: 350ms;
+    animation-timing-function: ease;
+}
+
+::view-transition-group(page-content) {
+    animation-duration: 500ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::view-transition-old(page-content) {
+    animation: page-content-out 350ms ease both;
+}
+
+::view-transition-new(page-content) {
+    animation: page-content-in 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes page-content-out {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.995);
+    }
+}
+
+@keyframes page-content-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.995);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation-duration: 1ms !important;
     }
 }
