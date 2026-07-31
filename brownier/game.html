@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="Play Brownie Rush: move the pan, catch falling brownies, and dodge the cookies.">
+    <title>Brownie Rush | Brownie Club</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="theme-color" content="#24120d">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+    <a class="brand" href="index.html" aria-label="Brownie Club home">
+        <span class="brand-mark">🍫</span>
+        <span>Brownie Club</span>
+    </a>
+    <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false">Menu</button>
+    <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="recipe.html">Recipe</a>
+        <a href="flavors.html">Flavors</a>
+        <a href="timer.html">Timer</a>
+        <a href="game.html">Game</a>
+    </nav>
+    <button class="sound-button" type="button" aria-label="Toggle sounds" title="Toggle sounds">🔊</button>
+</header>
+<main class="page-main game-page">
+    <section class="page-intro section-shell reveal">
+        <p class="eyebrow">While the pan bakes</p>
+        <h1>Brownie Rush</h1>
+        <p>Move the pan from side to side. Catch brownies for points, but do not let a cookie touch the pan.</p>
+    </section>
+    <section class="fall-game section-shell reveal">
+        <div class="fall-game-topbar">
+            <div class="game-stat">
+                <span>Score</span>
+                <strong id="gameScore">0</strong>
+            </div>
+            <p id="gameStatus" class="game-status" aria-live="polite">Ready to bake.</p>
+            <div class="game-stat game-stat-right">
+                <span>Best</span>
+                <strong id="gameBest">0</strong>
+            </div>
+        </div>
+        <div class="fall-canvas-wrap">
+            <canvas id="panGameCanvas" width="900" height="560" aria-label="A game where a pan catches brownies and dodges cookies"></canvas>
+            <div id="gameOverlay" class="fall-game-overlay">
+                <div class="game-symbol-row" aria-hidden="true">
+                    <span class="mini-brownie">▰</span>
+                    <span class="mini-pan">▱</span>
+                    <span class="mini-cookie">●</span>
+                </div>
+                <strong id="gameMessage">Catch brownies. Dodge cookies.</strong>
+                <p>Use A and D, the arrow keys, your mouse, or your finger.</p>
+                <button id="gameStart" class="button button-light" type="button">Start Game</button>
+            </div>
+        </div>
+        <div class="game-touch-controls" aria-label="Game movement controls">
+            <button id="gameLeft" type="button" aria-label="Move pan left">←</button>
+            <span>Move the pan</span>
+            <button id="gameRight" type="button" aria-label="Move pan right">→</button>
+        </div>
+        <p class="keyboard-note">Keyboard: A/D or ←/→ to move. Press Space to start again.</p>
+    </section>
+</main>
+<footer class="site-footer">
+    <strong>Brownies &gt; Cookies</strong>
+    <span>Baked slowly, played quickly.</span>
+</footer>
+</body>
+</html>
